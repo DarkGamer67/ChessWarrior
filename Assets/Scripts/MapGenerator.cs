@@ -19,21 +19,31 @@ using System.Collections.Generic;
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
+
+/// <summary>
+/// This is the main Class for the random map generation
+/// </summary>
 public class MapGenerator : MonoBehaviour
 {
-
+    /// <summary>White ground plane as a prefab </summary>
     public Transform groundPrefabWhite;
+    /// <summary>black ground plane as a prefab </summary>
     public Transform groundPrefabBlack;
-    public Vector2 mapSize;
+    /// <summary>the X and Y Size of the map to generate </summary>
+    public Coord mapSize;
+    /// <summary>The position where the main character starts from </summary>
     public Coord startingCoord;
 
+    /// <summary>Size of a ground plane </summary>
     public float tileSize;
 
     void Start()
     {
         GenerateMap();
     }
-
+    /// <summary>
+    /// This generates the map based on the given parameters in this class
+    /// </summary>
     public void GenerateMap()
     {
         string holderName = "Generated Map";
@@ -55,7 +65,6 @@ public class MapGenerator : MonoBehaviour
                 if ((x + y) % 2 == 1)
                 {
                     newTile = Instantiate(groundPrefabBlack, Coord.ToVector3(tileCoord), Quaternion.Euler(Vector3.right * 90)) as Transform;
-
                 }
                 else
                 {
@@ -67,6 +76,12 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This checks with the FloodFill algorithm whether the map is fully accessable or not
+    /// </summary>
+    /// <param name="obstacleMap">this is a map of the NEW obstacle placement (false = no obstacle ; true = obstacle)</param>
+    /// <param name="currentObstacleCount">this is the total number of placed obstacle</param>
+    /// <returns>this function returns whether the map is fully accessable or not</returns>
     bool MapIsFullyAccesible(bool[,] obstacleMap, int currentObstacleCount)
     {
         int accessibleTileCount = 1;

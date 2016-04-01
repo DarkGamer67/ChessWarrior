@@ -17,8 +17,19 @@ using UnityEngine;
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
+
+/// <summary>
+/// This is the utility class
+/// </summary>
 public static class Utility
 {
+    /// <summary>
+    /// This class shuffles an Array based on the given seed
+    /// </summary>
+    /// <typeparam name="T">type of the array</typeparam>
+    /// <param name="arrayToShuffle">the array that needs to be shuffled</param>
+    /// <param name="seed">the seed to shuffle the array</param>
+    /// <returns>this function returns the shuffled array</returns>
     public static T[] ShuffleArray<T>(T[] arrayToShuffle, int seed)
     {
         System.Random random = new System.Random(seed);
@@ -32,6 +43,12 @@ public static class Utility
         }
         return arrayToShuffle;
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="arrayToShuffle"></param>
+    /// <returns></returns>
     public static T[] ShuffleArray<T>(T[] arrayToShuffle)
     {
         System.Random random = new System.Random();
